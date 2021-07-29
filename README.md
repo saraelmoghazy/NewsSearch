@@ -10,4 +10,3 @@ using
 - picasso for image loading
 - retrofit for http request
 - jetpack Nav component
-- coroutines
