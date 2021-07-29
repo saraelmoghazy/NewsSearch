@@ -54,9 +54,11 @@ class NewsDetailsFragment : Fragment(), KodeinAware {
                 .into(rootView.icCover)
 
             rootView.btnMore.setOnClickListener {
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(article.url)
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(article.url)
+                    )
                 )
             }
         })
