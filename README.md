@@ -1,6 +1,6 @@
 # NewsSearch
 
-implment master details for news api
+Master details show paged news list.
 
 using 
 - Kotlin
