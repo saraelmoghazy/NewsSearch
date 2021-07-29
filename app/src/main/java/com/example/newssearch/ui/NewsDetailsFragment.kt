@@ -47,7 +47,8 @@ class NewsDetailsFragment : Fragment(), KodeinAware {
             rootView.txtContent.text = article.content
             Picasso.get()
                 .load(article.urlToImage)
-
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .resize(2048, 1600)
                 .onlyScaleDown()
                 .into(rootView.icCover)
