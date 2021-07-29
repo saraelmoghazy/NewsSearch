@@ -2,6 +2,8 @@
     <string name="app_name">NewsSearch</string>
     <string name="no_connection_header">No Connection Available</string>
     <string name="btn_retry">Reload</string>
+    <string name="btn_read_more">Read More</string>
+    <string name="source">Source</string>
 
 
 </resources>

@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newssearch.NewsAdapter
 import com.example.newssearch.R
 import com.example.newssearch.databinding.PartialNewsBinding
 import com.example.newssearch.model.ArticlesItem
@@ -28,7 +28,7 @@ class NewsFragment : Fragment(), KodeinAware, NewsAdapter.ArticleClickListener {
 
     private val viewModel: NewsViewModel by lazy {
         ViewModelProvider(
-            this,
+            requireActivity(),
             viewModelFactory
         ).get(NewsViewModel::class.java)
     }
@@ -53,24 +53,22 @@ class NewsFragment : Fragment(), KodeinAware, NewsAdapter.ArticleClickListener {
     }
 
     private fun initNewsPagingAdapter() {
-        val characterAdapter = NewsAdapter()
+        val newsAdapter = NewsAdapter(this)
         rootView.rvNews.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = characterAdapter
+            adapter = newsAdapter
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.characters.collect { pagingData ->
-                characterAdapter.submitData(pagingData)
+            viewModel.articles.collect { pagingData ->
+                newsAdapter.submitData(pagingData)
             }
         }
     }
 
-    companion object {
-        fun newInstance() = NewsFragment()
-    }
 
-    override fun onArticleClicked(binding: PartialNewsBinding, article: ArticlesItem) {
-
+    override fun onArticleClicked(article: ArticlesItem) {
+        viewModel.selectedArticle.value = article
+        (activity as MainActivity).navHostFragment.navController.navigate(R.id.newsToNewsDetails)
     }
 }

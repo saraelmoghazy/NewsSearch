@@ -1,5 +1,6 @@
-package com.example.newssearch
+package com.example.newssearch.ui
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -8,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newssearch.databinding.PartialNewsBinding
 import com.example.newssearch.model.ArticlesItem
 
-class NewsAdapter :
+class NewsAdapter(val articleClickListener: ArticleClickListener?) :
     PagingDataAdapter<ArticlesItem, NewsAdapter.NewsViewHolder>(NewsComparator) {
-    var articleClickListener: ArticleClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NewsViewHolder(
             PartialNewsBinding.inflate(
@@ -27,7 +28,6 @@ class NewsAdapter :
         init {
             itemView.setOnClickListener {
                 articleClickListener?.onArticleClicked(
-                    binding,
                     getItem(absoluteAdapterPosition) as ArticlesItem
                 )
             }
@@ -35,6 +35,7 @@ class NewsAdapter :
 
         fun bind(item: ArticlesItem) = with(binding) {
             article = item
+            binding.txtSource.text = Html.fromHtml(item.url, Html.FROM_HTML_MODE_COMPACT)
         }
     }
 
@@ -47,6 +48,6 @@ class NewsAdapter :
     }
 
     interface ArticleClickListener {
-        fun onArticleClicked(binding: PartialNewsBinding, article: ArticlesItem)
+        fun onArticleClicked(article: ArticlesItem)
     }
 }

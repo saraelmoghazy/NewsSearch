@@ -11,7 +11,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/storyLayout"
+        android:id="@+id/articleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -19,8 +19,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp">
+            android:layout_height="wrap_content">
 
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@{article.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icNews"
+                tools:text="Apple brings its free tutorials to YouTube" />
 
             <ImageView
                 android:id="@+id/icNews"
@@ -35,25 +46,21 @@
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/txtDesc"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtSource"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{article.description}"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="@string/source"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/icNews"
-                tools:text="Since 2017, all of Apple's retail stores have offered Today At Apple sessions, free workshops where you can learn, among other things, how to get the most out of the company's devices and software. In 2020, necessitated by the pandemic, Apple started offering…" />
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="16dp"
-                android:text="@{article.title}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDesc"
-                tools:text="Apple brings its free tutorials to YouTube" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

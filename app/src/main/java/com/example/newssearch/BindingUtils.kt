@@ -2,14 +2,12 @@ package com.example.newssearch
 
 
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
 
 /**
  * Created by Sara Elmoghazy
- * Helper Class for Binding actions to views given custom attributes.
  */
 object BindingUtils {
 
@@ -20,6 +18,8 @@ object BindingUtils {
             .load(imageUrl)
             .placeholder(R.drawable.ic_cover_place_holder)
             .error(R.drawable.ic_cover_place_holder)
+            .resize(2048, 1600)
+            .onlyScaleDown()
             .into(this)
     }
 
