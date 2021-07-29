@@ -16,8 +16,6 @@ object BindingUtils {
     fun ImageView.loadImage(imageUrl: String?) {
         Picasso.get()
             .load(imageUrl)
-            .placeholder(R.drawable.ic_cover_place_holder)
-            .error(R.drawable.ic_cover_place_holder)
             .resize(2048, 1600)
             .onlyScaleDown()
             .into(this)
